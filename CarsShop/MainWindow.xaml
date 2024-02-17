@@ -28,8 +28,9 @@
                         <Button Content="Update User" Click="UpdateUser_Click" Margin="5" Width="90"/>
                         <Button Content="Delete User" Click="DeleteUser_Click" Margin="5" Width="80"/>
                     </StackPanel>
-                    <TextBlock x:Name="lblNoUsers" Margin="10" Visibility="{Binding UserCountText}"
-                               Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="10" Visibility="{Binding UserCountText}">
+                        <TextBlock x:Name="lblNoUsers" Margin="10" Foreground="Blue" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                    </Border>
                 </Grid>
             </TabItem>
             <TabItem Header="Cars">
@@ -52,9 +53,11 @@
                         <Button Content="Update Car" Click="UpdateCar_Click" Margin="5" Width="80"/>
                         <Button Content="Delete Car" Click="DeleteCar_Click" Margin="5" Width="70"/>
                     </StackPanel>
-                    <TextBlock x:Name="lblNoCars" Grid.Row="1" Text="No cars found" Margin="10"
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="10" Visibility="{Binding UserCountText}">
+                        <TextBlock x:Name="lblNoCars" Grid.Row="1"  Margin="10"
            Visibility="{Binding CarCountText}"
-           Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+           Foreground="Blue" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                    </Border>
                 </Grid>
             </TabItem>
         </TabControl>

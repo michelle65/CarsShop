@@ -18,35 +18,39 @@ namespace CarsShop
         }
         private static string ConnectionStringBuild()
         {
-            return $"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CarsShop;Trusted_Connection=True;";
+            return $"Data Source=desktop\\SQLServer;Initial Catalog=CarsShop;Trusted_Connection=True;";
         }
 
-        public int CountCars()
+        public async Task<int> CountCarsAsync(int selectedUserId)
         {
             int count = 0;
-            // Create a new connection for each call.
+
             using (var connection = new SqlConnection(ConnectionStringBuild()))
             {
-                connection.Open();
-                using (var command = new SqlCommand("SELECT COUNT(*) FROM Cars", connection))
+                await connection.OpenAsync();
+                string query = "SELECT COUNT(*) FROM Cars WHERE UserId = @UserId";
+                using (var command = new SqlCommand(query, connection))
                 {
-                    count = (int)command.ExecuteScalar();
+                    command.Parameters.AddWithValue("@UserId", selectedUserId);
+                    count = (int)await command.ExecuteScalarAsync();
                 }
+                connection.Close();
             }
+
             return count;
         }
 
-        public int CountUsers()
+        public async Task<int> CountUsersAsync()
         {
             int count = 0;
-            // Create a new connection for each call.
             using (var connection = new SqlConnection(ConnectionStringBuild()))
             {
-                connection.Open();
+                await connection.OpenAsync();
                 using (var command = new SqlCommand("SELECT COUNT(*) FROM Users", connection))
                 {
-                    count = (int)command.ExecuteScalar();
+                    count = (int)await command.ExecuteScalarAsync();
                 }
+                connection.Close();
             }
             return count;
         }
