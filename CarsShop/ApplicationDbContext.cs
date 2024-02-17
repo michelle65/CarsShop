@@ -18,7 +18,7 @@ namespace CarsShop
         }
         private static string ConnectionStringBuild()
         {
-            return $"Data Source=desktop\\SQLServer;Initial Catalog=CarsShop;Trusted_Connection=True;";
+            return $"Data Source=desktop\\SQLEXPRESS;Initial Catalog=CarsShop;Trusted_Connection=True;";
         }
 
         public async Task<int> CountCarsAsync(int selectedUserId)
